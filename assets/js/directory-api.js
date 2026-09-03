@@ -181,11 +181,17 @@
     const coordinates =
       getCoordinates(options);
 
-    const phone =
-      cleanNullable(profile.phone);
+        const phone =
+      options &&
+      options.publishPhone
+        ? cleanNullable(profile.phone)
+        : null;
 
     const email =
-      cleanNullable(profile.email);
+      options &&
+      options.publishEmail
+        ? cleanNullable(profile.email)
+        : null;
 
     return {
       user_id: userId,
