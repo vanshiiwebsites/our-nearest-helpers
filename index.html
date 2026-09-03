@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Our Nearest Helpers makes useful nearby skills and services easier to discover across languages and communities."
+    />
+    <meta name="theme-color" content="#050817" />
+    <meta name="color-scheme" content="dark" />
+
+    <title>Our Nearest Helpers</title>
+
+    <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/map.css" />
+    <link rel="stylesheet" href="assets/css/profile.css" />
+
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script defer src="assets/js/config.js"></script>
+        <script defer src="assets/js/categories.js"></script>
+    <script defer src="assets/js/location.js"></script>
+    <script defer src="assets/js/maps.js"></script>
+    <script defer src="assets/js/search.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.4/dist/umd/supabase.min.js" integrity="sha384-yiVMs0R/Jyz7OhoXa/DsEMUSBLjEhr/QJta2ONO+zB6I8/GmNg/7AUFrZmAJV7KV" crossorigin="anonymous"></script>
+    <script defer src="assets/js/directory-api.js"></script>
+    <script defer src="assets/js/profile-store.js"></script>
+    <script defer src="assets/js/profile.js"></script>
+    <script defer src="assets/js/directory-ui.js"></script>
+    <script defer src="assets/js/app.js"></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="page-noise" aria-hidden="true"></div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
+    <header class="site-header" id="top">
+      <nav class="nav shell" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="Our Nearest Helpers home">
+          <span class="brand-mark" aria-hidden="true">ONH</span>
+          <span class="brand-copy">
+            <strong>OUR NEAREST</strong>
+            <small>HELPERS</small>
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="#how">How it works</a>
+          <a href="#helpers">Helpers</a>
+          <a href="#live-map">Live map</a>
+          <a href="#online-help">Online help</a>
+          <a href="#vision">Our vision</a>
+        </div>
+
+        <button class="nav-cta" type="button" data-open-location>
+          Find help <span aria-hidden="true">↗</span>
+        </button>
+
+        <button
+          class="menu-button"
+          id="menu-button"
+          type="button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+
+      <div class="mobile-menu shell" id="mobile-menu" hidden>
+        <a href="#how">How it works</a>
+        <a href="#helpers">Helpers</a>
+        <a href="#live-map">Live map</a>
+        <a href="#online-help">Online help</a>
+        <a href="#vision">Our vision</a>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">
+            <span></span>A HUMAN HELP NETWORK FOR EVERYWHERE
+          </p>
+
+          <h1 id="hero-title">
+            The right help.
+            <em>Closer than you think.</em>
+          </h1>
+
+          <p class="hero-text">
+            From the busiest city to the smallest town, discover the people whose
+            skills keep everyday life moving.
+          </p>
+
+          <div class="hero-actions">
+            <button class="primary-btn" type="button" data-open-location>
+              Find nearby help <span aria-hidden="true">⌖</span>
+            </button>
+
+            <a class="text-btn" href="#how">
+              See how it works <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div class="trust-row" aria-label="Platform principles">
+            <span><i></i>Location by permission</span>
+            <span>Worldwide-ready</span>
+            <span>English always available</span>
+          </div>
+        </div>
+
+        <div
+          class="network-visual reveal"
+          aria-label="Global helper network visual"
+        >
+          <div class="visual-glow visual-glow-one" aria-hidden="true"></div>
+          <div class="visual-glow visual-glow-two" aria-hidden="true"></div>
+
+          <div class="coverage-console">
+            <div class="console-bar">
+              <span>GLOBAL SERVICE NETWORK</span>
+              <b><i></i> LIVE FRAMEWORK</b>
+            </div>
+
+            <div class="coordinate-field" aria-hidden="true">
+              <div class="radar-sweep"></div>
+              <div class="crosshair"><span></span></div>
+
+              <div class="data-point point-1">
+                <i></i><span>DOCTOR</span>
+              </div>
+
+              <div class="data-point point-2">
+                <i></i><span>PLUMBER</span>
+              </div>
+
+              <div class="data-point point-3">
+                <i></i><span>TEACHER</span>
+              </div>
+
+              <div class="data-point point-4">
+                <i></i><span>DRIVER</span>
+              </div>
+
+              <div class="data-point point-5">
+                <i></i><span>GROCER</span>
+              </div>
+
+              <div class="data-point point-6">
+                <i></i><span>ELECTRICIAN</span>
+              </div>
+            </div>
+
+            <div class="console-footer">
+              <span>LOCATION-CENTRED</span>
+              <span>PRIVACY-FIRST</span>
+              <span>MULTILINGUAL</span>
+            </div>
+          </div>
+
+          <div class="floating-signal signal-a" aria-hidden="true">
+            <span>◎</span>
+            <div>
+              <small>SEARCH RADIUS</small>
+              <b>SMART EXPANSION</b>
+            </div>
+          </div>
+
+          <div class="floating-signal signal-b" aria-hidden="true">
+            <span>文</span>
+            <div>
+              <small>LANGUAGE</small>
+              <b>LOCAL + ENGLISH</b>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="steps-strip" id="how" aria-labelledby="how-title">
+        <div class="visually-hidden" id="how-title">How it works</div>
+
+        <div class="steps-grid shell">
+          <article class="reveal">
+            <span>01</span>
+            <div>
+              <h2>Share location</h2>
+              <p>Only when you choose to.</p>
+            </div>
+          </article>
+
+          <article class="reveal">
+            <span>02</span>
+            <div>
+              <h2>Tell us the need</h2>
+              <p>Search a skill or describe a problem.</p>
+            </div>
+          </article>
+
+          <article class="reveal">
+            <span>03</span>
+            <div>
+              <h2>Meet nearby help</h2>
+              <p>See relevant services around you.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="finder shell" id="finder" aria-labelledby="finder-title">
+        <div class="finder-copy reveal">
+          <p class="eyebrow"><span></span>YOUR SEARCH STARTS HERE</p>
+
+          <h2 id="finder-title">What kind of help do you need?</h2>
+
+          <p>
+            Choose a category, search a profession, and select your location.
+            These controls now connect directly to the live nearby-help map.
+          </p>
+        </div>
+
+        <div class="finder-panel reveal">
+          <div class="finder-status">
+            <span>DISCOVERY CONSOLE</span>
+            <b>
+              <i></i>
+              <span id="location-status">LOCATION NOT SET</span>
+            </b>
+          </div>
+
+          <label class="finder-search" for="main-search">
+            <span aria-hidden="true">⌕</span>
+
+            <input
+              id="main-search"
+              type="search"
+              autocomplete="off"
+              placeholder="Search plumber, doctor, teacher..."
+            />
+          </label>
+
+          <div class="finder-actions">
+            <button
+              class="primary-btn compact-btn"
+              type="button"
+              data-open-location
+            >
+              Choose location <span aria-hidden="true">⌖</span>
+            </button>
+
+            <a class="secondary-btn" href="#helpers">Browse all helpers</a>
+          </div>
+
+          <p class="location-summary" id="location-summary">
+            Your exact location is used only for this search and is not stored.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="live-map-section shell"
+        id="live-map"
+        aria-labelledby="live-map-title"
+      >
+        <div class="map-section-heading reveal">
+          <div>
+            <p class="eyebrow">
+              <span></span>DAY 02 · LIVE DISCOVERY LAYER
+            </p>
+
+            <h2 id="live-map-title">
+              See useful help<br />
+              <em>around your location.</em>
+            </h2>
+          </div>
+
+          <p>
+            Choose a helper and location. The map searches available public
+            listings nearby and expands the radius when needed.
+          </p>
+        </div>
+
+        <div class="map-toolbar reveal">
+          <div class="selected-helper-control">
+            <small>SELECTED HELPER</small>
+            <strong id="selected-helper-label">Choose a helper below</strong>
+          </div>
+
+          <label class="radius-control" for="radius-select">
+            <small>SEARCH RADIUS</small>
+
+            <select id="radius-select">
+              <option value="2000">2 km</option>
+              <option value="5000" selected>5 km</option>
+              <option value="10000">10 km</option>
+              <option value="25000">25 km</option>
+            </select>
+          </label>
+
+          <button
+            class="secondary-btn map-location-btn"
+            id="map-location-button"
+            type="button"
+          >
+            <span aria-hidden="true">⌖</span>
+            Change location
+          </button>
+
+          <button
+            class="primary-btn map-search-btn"
+            id="nearby-search-button"
+            type="button"
+          >
+            Search nearby <span aria-hidden="true">→</span>
+          </button>
+        </div>
+
+        <div class="map-workspace reveal">
+          <div class="map-canvas-shell">
+            <div
+              id="live-map-canvas"
+              aria-label="Interactive map showing nearby helpers"
+            ></div>
+
+            <div class="map-loading" id="map-loading" hidden>
+              <span class="map-spinner" aria-hidden="true"></span>
+              <strong>Searching the area…</strong>
+              <small>This may take a few seconds.</small>
+            </div>
+
+            <div class="map-unavailable" id="map-unavailable" hidden>
+              <span aria-hidden="true">!</span>
+              <strong>Interactive map could not load</strong>
+              <small>Check your connection and refresh the page.</small>
+            </div>
+          </div>
+
+          <aside class="results-panel" aria-labelledby="results-title">
+            <div class="results-head">
+              <div>
+                <small>NEARBY RESULTS</small>
+                <h3 id="results-title">Ready to search</h3>
+              </div>
+
+              <span id="results-count">0</span>
+            </div>
+
+            <p
+              class="results-status"
+              id="results-status"
+              aria-live="polite"
+            >
+              Select a helper and location to begin.
+            </p>
+
+            <div class="results-list" id="results-list"></div>
+
+            <div class="results-empty" id="results-empty">
+              <span aria-hidden="true">◎</span>
+              <p>Your nearby helper results will appear here.</p>
+            </div>
+
+            <p class="map-attribution-note">
+              Map and nearby listings © OpenStreetMap contributors · Place
+              search by Open-Meteo using GeoNames. Public listings may be
+              incomplete; verify identity, availability, and charges directly.
+            </p>
+          </aside>
+        </div>
+      </section>
+            <section
+        class="helpers-section shell"
+        id="helpers"
+        aria-labelledby="helpers-title"
+      >
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">
+              <span></span>EVERYDAY SKILLS. EXTRAORDINARY VALUE.
+            </p>
+
+            <h2 id="helpers-title">
+              One place for the people
+              <br />
+              who make life work.
+            </h2>
+          </div>
+
+          <label class="search-box" for="helper-search">
+            <span aria-hidden="true">⌕</span>
+
+            <input
+              id="helper-search"
+              type="search"
+              autocomplete="off"
+              placeholder="Search a helper"
+            />
+          </label>
+        </div>
+
+        <div
+          class="filter-row reveal"
+          id="filter-row"
+          aria-label="Helper category filters"
+        ></div>
+
+        <div
+          class="category-grid"
+          id="category-grid"
+          aria-live="polite"
+        ></div>
+
+        <div class="empty-state" id="empty-state" hidden>
+          <span aria-hidden="true">⌕</span>
+          <h3>No helper matched yet</h3>
+          <p>Try a different profession or category name.</p>
+        </div>
+      </section>
+
+      <section
+        class="online-section shell"
+        id="online-help"
+        aria-labelledby="online-title"
+      >
+        <div class="online-intro reveal">
+          <p class="eyebrow"><span></span>HELP WITHOUT DISTANCE</p>
+
+          <h2 id="online-title">
+            Online professionals,<br />
+            available beyond borders.
+          </h2>
+
+          <p>
+            Some skills do not need to be nearby. Connect with digital,
+            creative, educational, and advisory professionals from anywhere.
+          </p>
+        </div>
+
+        <article class="founder-card reveal">
+          <div class="founder-badge">FEATURED FOUNDING PROFILE</div>
+
+          <div class="founder-main">
+            <div class="founder-monogram" aria-hidden="true">ONH</div>
+
+            <div>
+              <p>WEBSITE DESIGNER</p>
+              <h3>Our Nearest Helpers</h3>
+              <span>Privacy-first community directory</span>
+            </div>
+          </div>
+
+          <div class="founder-tags">
+            <span>Responsive websites</span>
+            <span>AI-assisted design</span>
+            <span>Digital experiences</span>
+          </div>
+
+          <button class="profile-button" type="button" data-open-profile>
+            <span data-profile-button-label>Join as a helper</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </article>
+      </section>
+
+      <section
+        class="vision shell reveal"
+        id="vision"
+        aria-labelledby="vision-title"
+      >
+        <div>
+          <p class="eyebrow"><span></span>BUILT WITH PURPOSE</p>
+
+          <h2 id="vision-title">
+            A global map of<br />
+            <em>human capability.</em>
+          </h2>
+        </div>
+
+        <p>
+          Our Nearest Helpers is designed to make trusted everyday skills
+          easier to discover—across languages, borders, and communities—without
+          losing the human connection at the centre of every service.
+        </p>
+      </section>
+    </main>
+
+    <footer class="footer shell">
+      <a class="brand brand-compact" href="#top" aria-label="Back to top">
+        <span class="brand-mark" aria-hidden="true">ONH</span>
+
+        <span class="brand-copy">
+          <strong>OUR NEAREST</strong>
+          <small>HELPERS</small>
+        </span>
+      </a>
+
+      <p>
+        CONCEPT, DESIGN &amp; DIRECTION BY
+       <strong>OUR NEAREST HELPERS</strong> 
+      </p>
+
+      <span>LIVE MAP EDITION · 2026</span>
+    </footer>
+
+    <div class="modal-backdrop" id="location-modal" hidden>
+      <section
+        class="location-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="location-modal-title"
+        aria-describedby="location-modal-copy"
+      >
+        <button
+          class="modal-close"
+          id="modal-close"
+          type="button"
+          aria-label="Close location window"
+        >
+          ×
+        </button>
+
+        <div class="modal-icon" aria-hidden="true">⌖</div>
+
+        <p class="eyebrow">
+          <span></span>PRIVACY-FIRST LOCATION
+        </p>
+
+        <h2 id="location-modal-title">Where should we search?</h2>
+
+        <p id="location-modal-copy">
+          Use your current position with permission, or enter any city, town,
+          or postal code manually. English remains available everywhere.
+        </p>
+
+        <button class="location-button" id="use-location" type="button">
+          <span aria-hidden="true">◎</span>
+
+          <span>
+            <strong>Use my current location</strong>
+            <small>Your browser will ask first</small>
+          </span>
+
+          <i aria-hidden="true">→</i>
+        </button>
+
+        <div class="modal-divider">
+          <span>OR SEARCH MANUALLY</span>
+        </div>
+
+        <form class="manual-location-form" id="manual-location-form">
+          <label class="visually-hidden" for="manual-location">
+            City, town, or postal code
+          </label>
+
+          <input
+            id="manual-location"
+            name="location"
+            type="text"
+            autocomplete="address-level2"
+            placeholder="City, town, or postal code"
+            required
+          />
+
+          <button type="submit">Continue</button>
+        </form>
+
+        <p class="modal-message" id="modal-message" aria-live="polite">
+          No account required. Your location is not stored.
+        </p>
+      </section>
+          </div>
+
+    <div
+      class="toast"
+      id="toast"
+      role="status"
+      aria-live="polite"
+      hidden
+    ></div>
+
+    <div
+      class="profile-modal"
+      id="helper-profile-modal"
+      hidden
+    >
+      <section
+        class="profile-dialog"
+        id="helper-profile-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="profile-modal-title"
+      >
+        <button
+          class="profile-close"
+          id="profile-close"
+          type="button"
+          aria-label="Close helper profile form"
+        >
+          ×
+        </button>
+
+        <div class="profile-shell">
+          <div class="profile-form-panel">
+            <p class="profile-eyebrow">
+              OUR NEAREST HELPERS
+            </p>
+
+            <h2 id="profile-modal-title">
+              Build your helper profile
+            </h2>
+
+            <p class="profile-intro">
+              Present your skills clearly so nearby people can understand how
+              you may be able to help them. Your Day 3 profile stays on this
+              device.
+            </p>
+
+            <div
+              class="profile-progress"
+              aria-label="Profile sections"
+            >
+              <span
+                class="profile-progress-step is-complete"
+                title="Professional identity"
+              ></span>
+              <span
+                class="profile-progress-step is-active"
+                title="Service details"
+              ></span>
+              <span
+                class="profile-progress-step"
+                title="Contact and introduction"
+              ></span>
+            </div>
+
+            <form id="helper-profile-form" novalidate>
+              <section class="profile-section">
+                <h3>Professional identity</h3>
+                <p class="profile-section-note">
+                  Add the name and role people should see on your profile.
+                </p>
+
+                <div class="profile-form-grid">
+                  <div class="profile-field">
+                    <label for="profile-full-name">Full name *</label>
+                    <input
+                      id="profile-full-name"
+                      name="fullName"
+                      type="text"
+                      maxlength="80"
+                      autocomplete="name"
+                      placeholder="e.g. Your full name"
+                      required
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="fullName"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-title">Professional title *</label>
+                    <input
+                      id="profile-title"
+                      name="professionalTitle"
+                      type="text"
+                      maxlength="100"
+                      placeholder="e.g. Website Designer"
+                      required
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="professionalTitle"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-category">Helper category *</label>
+                    <select
+                      id="profile-category"
+                      name="category"
+                      required
+                    >
+                      <option value="">Choose a category</option>
+                    </select>
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="category"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-primary-skill">Primary skill *</label>
+                    <input
+                      id="profile-primary-skill"
+                      name="primarySkill"
+                      type="text"
+                      list="profile-skill-options"
+                      maxlength="100"
+                      placeholder="Choose or enter a skill"
+                      required
+                    />
+                    <datalist id="profile-skill-options"></datalist>
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="primarySkill"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-experience">
+                      Experience in years *
+                    </label>
+                    <input
+                      id="profile-experience"
+                      name="experienceYears"
+                      type="number"
+                      min="0"
+                      max="60"
+                      step="1"
+                      inputmode="numeric"
+                      placeholder="0"
+                      required
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="experienceYears"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-pricing">Pricing information</label>
+                    <input
+                      id="profile-pricing"
+                      name="pricing"
+                      type="text"
+                      maxlength="80"
+                      placeholder="e.g. ₹500 onwards"
+                    />
+                    <small>
+                      Optional. You can also write “Discuss directly”.
+                    </small>
+                  </div>
+                </div>
+              </section>
+                            <section class="profile-section">
+                <h3>Service details</h3>
+                <p class="profile-section-note">
+                  Tell people where, when and how you provide your service.
+                </p>
+
+                <div class="profile-form-grid">
+                  <div class="profile-field">
+                    <label for="profile-service-area">
+                      City or service area *
+                    </label>
+                    <input
+                      id="profile-service-area"
+                      name="serviceArea"
+                      type="text"
+                      maxlength="120"
+                      autocomplete="address-level2"
+                      placeholder="Enter your city or service area"
+                      required
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="serviceArea"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-postcode">Postal code</label>
+                    <input
+                      id="profile-postcode"
+                      name="postcode"
+                      type="text"
+                      maxlength="15"
+                      autocomplete="postal-code"
+                      inputmode="numeric"
+                      placeholder="Enter postal code (optional)"
+                    />
+                  </div>
+
+                  <div class="profile-field is-full">
+                    <span class="profile-choice-label">
+                      Languages you can use *
+                    </span>
+
+                    <div class="profile-choice-grid">
+                      <label class="profile-choice">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value="Hindi"
+                        />
+                        <span>Hindi</span>
+                      </label>
+
+                      <label class="profile-choice">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value="English"
+                        />
+                        <span>English</span>
+                      </label>
+
+                      <label class="profile-choice">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value="Rajasthani"
+                        />
+                        <span>Rajasthani</span>
+                      </label>
+
+                      <label class="profile-choice">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value="Gujarati"
+                        />
+                        <span>Gujarati</span>
+                      </label>
+
+                      <label class="profile-choice">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value="Punjabi"
+                        />
+                        <span>Punjabi</span>
+                      </label>
+
+                      <label class="profile-choice">
+                        <input
+                          type="checkbox"
+                          name="languages"
+                          value="Marathi"
+                        />
+                        <span>Marathi</span>
+                      </label>
+                    </div>
+
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="languages"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-service-mode">Service mode *</label>
+                    <select
+                      id="profile-service-mode"
+                      name="serviceMode"
+                      required
+                    >
+                      <option value="">Choose service mode</option>
+                      <option value="In person">In person</option>
+                      <option value="Online">Online</option>
+                      <option value="In person and online">
+                        In person and online
+                      </option>
+                    </select>
+
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="serviceMode"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-availability">Availability *</label>
+                    <select
+                      id="profile-availability"
+                      name="availability"
+                      required
+                    >
+                      <option value="">Choose availability</option>
+                      <option value="Weekdays">Weekdays</option>
+                      <option value="Weekends">Weekends</option>
+                      <option value="Evenings">Evenings</option>
+                      <option value="Flexible">Flexible</option>
+                    </select>
+
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="availability"
+                    ></small>
+                  </div>
+                </div>
+                            </section>
+                                          <section class="profile-section">
+                <h3>Contact and introduction</h3>
+                <p class="profile-section-note">
+                  Add at least one contact method and a clear introduction.
+                </p>
+
+                <div class="profile-form-grid">
+                  <div class="profile-field">
+                    <label for="profile-phone">Phone number</label>
+                    <input
+                      id="profile-phone"
+                      name="phone"
+                      type="tel"
+                      maxlength="30"
+                      autocomplete="tel"
+                      inputmode="tel"
+                      placeholder="Enter phone number"
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="phone"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field">
+                    <label for="profile-email">Email address</label>
+                    <input
+                      id="profile-email"
+                      name="email"
+                      type="email"
+                      maxlength="120"
+                      autocomplete="email"
+                      placeholder="name@example.com"
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="email"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field is-full">
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="contact"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field is-full">
+                    <label for="profile-website">
+                      Website or professional link
+                    </label>
+                    <input
+                      id="profile-website"
+                      name="website"
+                      type="url"
+                      maxlength="250"
+                      autocomplete="url"
+                      placeholder="https://example.com"
+                    />
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="website"
+                    ></small>
+                  </div>
+
+                  <div class="profile-field is-full">
+                    <label for="profile-bio">About your work *</label>
+                    <textarea
+                      id="profile-bio"
+                      name="bio"
+                      minlength="30"
+                      maxlength="500"
+                      placeholder="Describe your skills, experience and the kind of help you provide."
+                      required
+                    ></textarea>
+
+                    <small>
+                      Minimum 30 characters. Avoid sharing sensitive personal
+                      information.
+                    </small>
+
+                    <small
+                      class="profile-field-error"
+                      data-profile-error="bio"
+                    ></small>
+                  </div>
+                </div>
+
+                <label class="profile-consent">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    value="accepted"
+                  />
+                  <span>
+                    I understand that this Day 3 version stores my profile only
+                    in this browser. It is not yet published to a public helper
+                    database.
+                  </span>
+                </label>
+
+                <small
+                  class="profile-field-error"
+                  data-profile-error="consent"
+                ></small>
+              </section>
+
+              <div class="profile-actions">
+                <button
+                  class="profile-primary-button"
+                  type="submit"
+                >
+                  Save profile
+                </button>
+
+                <button
+                  class="profile-secondary-button"
+                  id="profile-save-draft"
+                  type="button"
+                >
+                  Save draft
+                </button>
+
+                <button
+                  class="profile-secondary-button"
+                  id="profile-reset"
+                  type="button"
+                >
+                  Reset profile
+                </button>
+
+                <p
+                  class="profile-save-status"
+                  id="profile-save-status"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </div>
+            </form>
+          </div>
+                    <aside
+            class="profile-preview-panel"
+            aria-label="Live helper profile preview"
+          >
+            <p class="profile-preview-heading">
+              Live profile preview
+            </p>
+
+            <article class="profile-preview-card">
+              <div class="profile-preview-cover"></div>
+
+              <div class="profile-preview-body">
+                <div
+                  class="profile-avatar"
+                  id="profile-preview-avatar"
+                  aria-hidden="true"
+                >
+                  NH
+                </div>
+
+                <h3
+                  class="profile-preview-name"
+                  id="profile-preview-name"
+                >
+                  Your name
+                </h3>
+
+                <p
+                  class="profile-preview-role"
+                  id="profile-preview-role"
+                >
+                  Professional title
+                </p>
+
+                <p
+                  class="profile-preview-location"
+                  id="profile-preview-location"
+                >
+                  📍 Service area
+                </p>
+
+                <p
+                  class="profile-preview-bio"
+                  id="profile-preview-bio"
+                >
+                  Your professional introduction will appear here.
+                </p>
+
+                <div
+                  class="profile-preview-tags"
+                  id="profile-preview-tags"
+                ></div>
+
+                <div class="profile-preview-details">
+                  <div class="profile-preview-detail">
+                    <span>Experience</span>
+                    <strong id="profile-preview-experience">
+                      Not added
+                    </strong>
+                  </div>
+
+                  <div class="profile-preview-detail">
+                    <span>Availability</span>
+                    <strong id="profile-preview-availability">
+                      Not added
+                    </strong>
+                  </div>
+
+                  <div class="profile-preview-detail">
+                    <span>Service mode</span>
+                    <strong id="profile-preview-mode">
+                      Not added
+                    </strong>
+                  </div>
+
+                  <div class="profile-preview-detail">
+                    <span>Pricing</span>
+                    <strong id="profile-preview-pricing">
+                      Discuss directly
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+    </div>
+
+    <noscript>
+      <div class="noscript-message">
+        Please enable JavaScript to search helper categories and use location
+        controls.
+      </div>
+    </noscript>
+  </body>
+</html>
