@@ -431,13 +431,15 @@
         "Choose your availability.";
     }
 
-    if (
+        if (
       !profile.phone &&
-      !profile.email
+      !profile.email &&
+      !profile.website
     ) {
       errors.contact =
-        "Add a phone number or email.";
-    }
+        "Add a phone number, email or website link.";
+        }
+    
 
     if (
       profile.phone &&
