@@ -71,6 +71,14 @@
     minimum,
     maximum,
   ) {
+      if (
+      value === null ||
+      value === undefined ||
+      value === ""
+    ) {
+      return null;
+          }
+
     const number = Number(value);
 
     if (
@@ -435,9 +443,12 @@
       row.approximate_longitude,
     );
 
-    const hasCoordinates =
+        const hasCoordinates =
+      row.approximate_latitude !== null &&
+      row.approximate_longitude !== null &&
       Number.isFinite(latitude) &&
-      Number.isFinite(longitude);
+      Number.isFinite(longitude) &&
+      (latitude !== 0 || longitude !== 0);
 
     const hasSearchLocation =
       location &&
