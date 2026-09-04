@@ -527,7 +527,19 @@
     const radii = getRadiusSequence(elements.radiusSelect.value);
 
     let finalResponse = null;
+    const communityPromise =
+      window.ONH_DIRECTORY &&
+      typeof window.ONH_DIRECTORY.getApprovedProfiles === "function"
+        ? window.ONH_DIRECTORY
+            .getApprovedProfiles({
+              helper: state.selectedHelper,
+              location: state.location,
+              radiusKm: radii[radii.length - 1] / 1000,
+            })
+            .catch(() => [])
+        : Promise.resolve([]);
 
+    let communityProfiles = null;
     setMapLoading(true);
 
     elements.resultsList.innerHTML = "";
@@ -552,12 +564,43 @@
           "neutral",
         );
 
-        finalResponse = await window.ONH_SEARCH.searchNearby({
+                const mapResponse = await window.ONH_SEARCH.searchNearby({
           helper: state.selectedHelper,
           location: state.location,
           radius,
         });
+        if (communityProfiles === null) {
+          communityProfiles = await communityPromise;
+        }
 
+        const radiusKm = radius / 1000;
+
+        const matchingCommunityProfiles = communityProfiles.filter(
+          (profile) =>
+            profile.distanceKm === null ||
+            profile.distanceKm <= radiusKm,
+        );
+
+        const results = [
+          ...matchingCommunityProfiles,
+          ...mapResponse.results,
+        ].sort((first, second) => {
+          const firstDistance = Number.isFinite(first.distanceKm)
+            ? first.distanceKm
+            : Number.POSITIVE_INFINITY;
+
+          const secondDistance = Number.isFinite(second.distanceKm)
+            ? second.distanceKm
+            : Number.POSITIVE_INFINITY;
+
+          return firstDistance - secondDistance;
+        });
+
+        finalResponse = {
+          ...mapResponse,
+          radius,
+          results,
+        };
         if (finalResponse.results.length > 0) {
           elements.radiusSelect.value = String(radius);
           break;
@@ -636,7 +679,10 @@
   }
 
   function renderResultActions(result) {
-    const actions = [
+        const actions =
+      Number.isFinite(result.latitude) &&
+      Number.isFinite(result.longitude)
+        ? [
       `
         <button
           class="result-focus-button"
@@ -656,7 +702,8 @@
           Directions ↗
         </a>
       `,
-    ];
+            ]
+        : [];
 
     if (result.phone) {
       const phone = String(result.phone).replace(/[^+\d,;#*]/g, "");
@@ -665,7 +712,11 @@
         actions.push(`<a href="tel:${escapeHtml(phone)}">Call</a>`);
       }
     }
+    const email = String(result.email || "").trim();
 
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      actions.push(`<a href="mailto:${escapeHtml(email)}">Email</a>`);
+    }
     const website = safeHttpUrl(result.website);
 
     if (website) {
@@ -715,7 +766,7 @@
                 </h4>
 
                 <span class="result-distance">
-                  ${result.distanceKm.toFixed(1)} km
+                                    ${result.profileType === "community" ? "Approved profile · " : ""}${Number.isFinite(result.distanceKm) ? `${result.distanceKm.toFixed(1)} km` : "Online / area only"}
                 </span>
               </div>
 
